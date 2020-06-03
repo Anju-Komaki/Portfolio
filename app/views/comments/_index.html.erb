@@ -1,0 +1,13 @@
+ <% @comic.comments.each do |comment| %>
+ <div id="comic_comment-<%= comment.id %>">
+   <%= comment.user.username %>
+   <div class="pull-right">
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+   </div>
+   <%= comment.comment %><br>
+   <% unless current_user != comment.user %>
+    <%= link_to t('.Destroy'), comic_comment_path(comment.id), method: :delete, remote: true, class: "btn btn-danger" %>
+  <% end %>
+ </div>
+ <% end %>
+
